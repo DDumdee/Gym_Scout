@@ -8,15 +8,6 @@ const verifyPassword = async (pw: string, hash: string) =>
 
 export const authRoutes = new Elysia({ prefix: "/auth" })
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-    // Replace with real DB/auth logic
-    if (email === "test.testing@testerson.test" && password === "password123") {
-      return { success: true, message: "Welcome back!" };
-=======
-=======
->>>>>>> 863b26f05b11a934a55460bc055a03adbe902d92
-  
   .post("/register", async ({ body, set }) => {
     const { name, email, password } = body;
 
@@ -29,10 +20,6 @@ export const authRoutes = new Elysia({ prefix: "/auth" })
     if (error) {
       set.status = 400;
       return { success: false, message: "Email already in use" };
-<<<<<<< HEAD
->>>>>>> 863b26f05b11a934a55460bc055a03adbe902d92
-=======
->>>>>>> 863b26f05b11a934a55460bc055a03adbe902d92
     }
 
     return { success: true };
@@ -65,14 +52,12 @@ export const authRoutes = new Elysia({ prefix: "/auth" })
     }
 
     // Store name in a simple cookie (use JWT in production)
-    if (cookie.session) {
-      cookie.session.set({
-        value: JSON.stringify({ name: user.name, email: user.email }),
-        httpOnly: true,
-        maxAge: 60 * 60 * 24, // 1 day
-      });
-    }
-  
+    cookie.session.set({
+      value: JSON.stringify({ name: user.name, email: user.email }),
+      httpOnly: true,
+      maxAge: 60 * 60 * 24, // 1 day
+    });
+
     return { success: true, name: user.name };
   }, {
     body: t.Object({
@@ -80,20 +65,8 @@ export const authRoutes = new Elysia({ prefix: "/auth" })
       password: t.String({ minLength: 6 }),
     }),
   })
-  .get("/me", ({ cookie, set }) => {
-  const session = cookie.session?.value;
-  if (!session) { set.status = 401; return { name: null }; }
-  try {
-    const { name } = JSON.parse(session as string);
-    return { name };
-  } catch {
-    set.status = 401;
-    return { name: null };
-  }
-})
+
   .post("/logout", ({ cookie }) => {
-    if (cookie.session) {
-      cookie.session.remove();
-    }
+    cookie.session.remove();
     return { success: true };
   });
