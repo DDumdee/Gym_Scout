@@ -9,10 +9,13 @@ const verifyPassword = async (pw: string, hash: string) =>
 export const authRoutes = new Elysia({ prefix: "/auth" })
 
 <<<<<<< HEAD
+<<<<<<< HEAD
     // Replace with real DB/auth logic
     if (email === "test.testing@testerson.test" && password === "password123") {
       return { success: true, message: "Welcome back!" };
 =======
+=======
+>>>>>>> 863b26f05b11a934a55460bc055a03adbe902d92
   
   .post("/register", async ({ body, set }) => {
     const { name, email, password } = body;
@@ -26,6 +29,9 @@ export const authRoutes = new Elysia({ prefix: "/auth" })
     if (error) {
       set.status = 400;
       return { success: false, message: "Email already in use" };
+<<<<<<< HEAD
+>>>>>>> 863b26f05b11a934a55460bc055a03adbe902d92
+=======
 >>>>>>> 863b26f05b11a934a55460bc055a03adbe902d92
     }
 
