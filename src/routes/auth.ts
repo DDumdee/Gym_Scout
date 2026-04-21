@@ -1,12 +1,7 @@
 import { Elysia, t } from "elysia";
-import { supabase } from "../db";
-
-// Simple password hashing with Bun's built-in
-const hashPassword = async (pw: string) => await Bun.password.hash(pw);
-const verifyPassword = async (pw: string, hash: string) =>
-  await Bun.password.verify(pw, hash);
 
 export const authRoutes = new Elysia({ prefix: "/auth" })
+<<<<<<< HEAD
 
   .post("/register", async ({ body, set }) => {
     const { name, email, password } = body;
@@ -32,19 +27,17 @@ export const authRoutes = new Elysia({ prefix: "/auth" })
   })
 
   .post("/login", async ({ body, set, cookie }) => {
+=======
+  .post("/login", ({ body, set }) => {
+>>>>>>> parent of 863b26f (full database, i hope)
     const { email, password } = body;
 
-    const { data: user, error } = await supabase
-      .from("users")
-      .select("*")
-      .eq("email", email)
-      .single();
-
-    if (error || !user) {
-      set.status = 401;
-      return { success: false, message: "Invalid credentials" };
+    // Replace with your real DB/auth logic
+    if (email === "test.testing@testerson.test" && password === "password123") {
+      return { success: true, message: "Welcome back!" };
     }
 
+<<<<<<< HEAD
     const valid = await verifyPassword(password, user.password);
     if (!valid) {
       set.status = 401;
@@ -59,11 +52,16 @@ export const authRoutes = new Elysia({ prefix: "/auth" })
     });
 
     return { success: true, name: user.name };
+=======
+    set.status = 401;
+    return { success: false, message: "Invalid credentials" };
+>>>>>>> parent of 863b26f (full database, i hope)
   }, {
     body: t.Object({
       email: t.String({ format: "email" }),
       password: t.String({ minLength: 6 }),
     }),
+<<<<<<< HEAD
   })
 
   .post("/logout", ({ cookie }) => {
@@ -81,3 +79,6 @@ export const authRoutes = new Elysia({ prefix: "/auth" })
     return { name: null };
   }
 })
+=======
+  });
+>>>>>>> parent of 863b26f (full database, i hope)
