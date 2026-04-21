@@ -1,0 +1,28 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Welcome</title><link rel="stylesheet" href="style.css" /></head>
+<body>
+  <div class="login-wrap">
+    <div class="login-card" style="text-align:center">
+      <div class="welcome-icon">✓</div>
+      <h1 class="login-title" id="welcome-msg">Welcome,<span id="user-name">...</span></h1>
+      <p class="login-sub">You're all set. Let's get moving.</p>
+      <button class="btn-primary">Go to Dashboard</button>
+      <button class="btn-outline" onclick="logout()">Log Out</button>
+    </div>
+  </div>
+  <script>
+    // Fetch the session name from the server
+    fetch('/auth/me')
+      .then(r => r.json())
+      .then(data => {
+        if (data.name) { document.getElementById('user-name').textContent = data.name; }
+        else { location.href = 'login.html'; }
+      })
+      .catch(() => location.href = 'login.html');
+    async function logout() {
+      await fetch('/auth/logout', { method: 'POST' });
+      location.href = 'index.html';
+    }
+  </script>
+</body></html>

@@ -70,3 +70,14 @@ export const authRoutes = new Elysia({ prefix: "/auth" })
     cookie.session.remove();
     return { success: true };
   });
+  .get("/me", ({ cookie, set }) => {
+  const session = cookie.session.value;
+  if (!session) { set.status = 401; return { name: null }; }
+  try {
+    const { name } = JSON.parse(session);
+    return { name };
+  } catch {
+    set.status = 401;
+    return { name: null };
+  }
+})

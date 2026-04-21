@@ -10,13 +10,8 @@
     "typescript": "^5"
   },
   "dependencies": {
-    "@elysiajs/cookie": "^0.8.0",
     "@elysiajs/static": "^1.4.9",
-<<<<<<< HEAD
     "@supabase/supabase-js": "^2.104.0",
-=======
-    "@supabase/supabase-js": "^2.103.0",
->>>>>>> 863b26f05b11a934a55460bc055a03adbe902d92
     "elysia": "^1.4.28"
   }
 }
