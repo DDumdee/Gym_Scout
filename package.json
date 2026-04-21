@@ -11,7 +11,10 @@
   },
   "dependencies": {
     "@elysiajs/static": "^1.4.9",
+<<<<<<< HEAD
     "@supabase/supabase-js": "^2.104.0",
+=======
+>>>>>>> parent of 99f722a (database start)
     "elysia": "^1.4.28"
   }
 }
