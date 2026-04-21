@@ -2,6 +2,7 @@ import { Elysia, t } from "elysia";
 
 export const authRoutes = new Elysia({ prefix: "/auth" })
 <<<<<<< HEAD
+<<<<<<< HEAD
 
   .post("/register", async ({ body, set }) => {
     const { name, email, password } = body;
@@ -30,6 +31,9 @@ export const authRoutes = new Elysia({ prefix: "/auth" })
 =======
   .post("/login", ({ body, set }) => {
 >>>>>>> parent of 863b26f (full database, i hope)
+=======
+  .post("/login", ({ body, set }) => {
+>>>>>>> parent of 863b26f (full database, i hope)
     const { email, password } = body;
 
     // Replace with your real DB/auth logic
@@ -37,6 +41,7 @@ export const authRoutes = new Elysia({ prefix: "/auth" })
       return { success: true, message: "Welcome back!" };
     }
 
+<<<<<<< HEAD
 <<<<<<< HEAD
     const valid = await verifyPassword(password, user.password);
     if (!valid) {
@@ -56,11 +61,16 @@ export const authRoutes = new Elysia({ prefix: "/auth" })
     set.status = 401;
     return { success: false, message: "Invalid credentials" };
 >>>>>>> parent of 863b26f (full database, i hope)
+=======
+    set.status = 401;
+    return { success: false, message: "Invalid credentials" };
+>>>>>>> parent of 863b26f (full database, i hope)
   }, {
     body: t.Object({
       email: t.String({ format: "email" }),
       password: t.String({ minLength: 6 }),
     }),
+<<<<<<< HEAD
 <<<<<<< HEAD
   })
 
@@ -79,6 +89,9 @@ export const authRoutes = new Elysia({ prefix: "/auth" })
     return { name: null };
   }
 })
+=======
+  });
+>>>>>>> parent of 863b26f (full database, i hope)
 =======
   });
 >>>>>>> parent of 863b26f (full database, i hope)
